@@ -1,14 +1,14 @@
 from rest_framework import serializers
-from .models import Marca, Vehiculo
+from .models import Shows, Reservations
 
-class MarcaSerializer(serializers.ModelSerializer):
+class ShowsSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Marca
-        fields = ["id", "nombre"]
+        model = Shows
+        fields = ["id", "movie_title", "room", "price", "available_seats"]
 
-class VehiculoSerializer(serializers.ModelSerializer):
+class ReservationsSerializer(serializers.ModelSerializer):
     marca_nombre = serializers.CharField(source="marca.nombre", read_only=True)
 
     class Meta:
-        model = Vehiculo
-        fields = ["id", "marca", "marca_nombre", "modelo", "anio", "placa", "color", "creado_en"]
+        model = Reservations
+        fields = ["show_id", "customer_name", "seats", "status", "created_at"]
